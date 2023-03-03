@@ -1,45 +1,92 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0", 
+    "version": "2.0.0",
     "tasks": [
         {
-            "label": "写映像文件",
-            "type": "shell",
-            "command": "bash ${workspaceRoot}/script/img-write-osx.sh",
-            "windows": {
-                // windows下特殊一些
-                "command": "${workspaceRoot}/script/img-write-win.bat",
-            },
-            "linux":{
-                "command": "bash ${workspaceRoot}/script/img-write-linux.sh"
-            },
-            "options": {
-                "cwd": "${workspaceRoot}/../../image/"
-            }
-        },
-        {
-            "label": "启动qemu",
-            "type": "shell",
-            "command": "bash ${workspaceRoot}/script/qemu-debug-osx.sh",
-            "windows": {
-                // windows下特殊一些
-                "command": "${workspaceRoot}/script/qemu-debug-win.bat",
-            },
-            "linux":{
-                "command": "bash ${workspaceRoot}/script/qemu-debug-linux.sh",
-            },
-            "options": {
-                "cwd": "${workspaceRoot}/../../image/"
-            }
-        },
-        {
-            "label": "调试准备",
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "写映像文件",
-                "启动qemu"
+            "label": "cmake build debug",
+            "type": "shell",            
+            "command": "cmake",
+            "args": [
+                "-G",
+                "MinGW Makefiles",
+                "-B",
+                "build",
+                "${workspaceFolder}",
+                "-DCMAKE_BUILD_TYPE=Debug"
             ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "build Debug",
+            "type": "shell",            
+            "command": "cmake",
+            "args": [
+                "--build",
+                ".",
+                "--config",
+                "Debug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "dependsOrder": "sequence", //顺序执行依赖
+            // "dependsOn": [
+            //     "cmake build debug",
+            // ],
+        },
+        {
+            "label": "cmake build release",
+            "type": "shell",            
+            "command": "cmake",
+            "args": [
+                "-G",
+                "MinGW Makefiles",
+                "-B",
+                "build",
+                "${workspaceFolder}",
+                "-DCMAKE_BUILD_TYPE=Release"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "build Release",
+            "command": "cmake",
+            "args": [
+                "--build",
+                ".",
+                "--config",
+                "Release"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            // "dependsOn": [
+            //     "cmake build release",
+            // ],
         }
     ]
 }

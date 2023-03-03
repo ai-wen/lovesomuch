@@ -1,0 +1,26 @@
+{
+    //Ctrl+Shift+P，选择Edit Configurations
+    //配置头文件路径，用于c++插件实现代码补全，与cmakelists中的inclued不一样
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                //方式1，该数组下可以添加多个路径
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "g++.exe", //D:\\SW\\mingw64\\bin\\
+            "cStandard": "c17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "windows-gcc-x64",
+            //方式2，执行cmake命令后生成的compile_commands.json文件,具体看工程配置
+            //cmakelists.txt文件中添加set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+            "configurationProvider": "${workspaceFolder}/build/compile_commands.json"
+        }
+    ],
+    "version": 4
+}
