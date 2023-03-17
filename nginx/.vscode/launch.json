@@ -28,6 +28,16 @@
                     "ignoreFailures": true
                 }
             ]
+        },
+        {
+            "name": "(gdb) Attach",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/bin/nginx.exe",                  
+            "MIMode": "gdb",
+            "miDebuggerPath": "gdb.exe",
+            //  附件进程需要先查看进程id
+            "processId": "9133"            
         }
     ]
 }
