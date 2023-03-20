@@ -16,12 +16,12 @@ modules:
 	$(MAKE) -f objs/Makefile modules
 
 upgrade:
-	/d/work/myGit/lovesomuch/nginx/bin/nginx.exe -t
+	D:/work/myGit/lovesomuch/nginx/bin/nginx.exe -t
 
-	kill -USR2 `cat /d/work/myGit/lovesomuch/nginx/bin/logs/nginx.pid`
+	kill -USR2 `cat D:/work/myGit/lovesomuch/nginx/bin/logs/nginx.pid`
 	sleep 1
-	test -f /d/work/myGit/lovesomuch/nginx/bin/logs/nginx.pid.oldbin
+	test -f D:/work/myGit/lovesomuch/nginx/bin/logs/nginx.pid.oldbin
 
-	kill -QUIT `cat /d/work/myGit/lovesomuch/nginx/bin/logs/nginx.pid.oldbin`
+	kill -QUIT `cat D:/work/myGit/lovesomuch/nginx/bin/logs/nginx.pid.oldbin`
 
 .PHONY:	build install modules upgrade
