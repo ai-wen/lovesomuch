@@ -1,0 +1,92 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "cmake build debug",
+            "type": "shell",            
+            "command": "cmake",
+            "args": [
+                "-G",
+                "MinGW Makefiles",
+                "-B",
+                "build",
+                "${workspaceFolder}",
+                "-DCMAKE_BUILD_TYPE=Debug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "build Debug",
+            "type": "shell",            
+            "command": "cmake",
+            "args": [
+                "--build",
+                ".",
+                "--config",
+                "Debug"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "dependsOrder": "sequence", //顺序执行依赖
+            // "dependsOn": [
+            //     "cmake build debug",
+            // ],
+        },
+        {
+            "label": "cmake build release",
+            "type": "shell",            
+            "command": "cmake",
+            "args": [
+                "-G",
+                "MinGW Makefiles",
+                "-B",
+                "build",
+                "${workspaceFolder}",
+                "-DCMAKE_BUILD_TYPE=Release"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "build Release",
+            "command": "cmake",
+            "args": [
+                "--build",
+                ".",
+                "--config",
+                "Release"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            // "dependsOn": [
+            //     "cmake build release",
+            // ],
+        }
+    ]
+}
